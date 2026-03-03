@@ -3,7 +3,6 @@ import feedparser
 import asyncio
 import os
 
-# Environment variables වලින් values ගන්නවා
 TOKEN = os.getenv('TOKEN')
 YOUTUBE_CHANNEL_ID = os.getenv('YOUTUBE_CHANNEL_ID')
 DISCORD_CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
@@ -38,12 +37,9 @@ async def check_youtube():
                     sent_videos.add(video_id)
                     print(f"Sent: {entry.title}")
             
-            await asyncio.sleep(300)  # විනාඩි 5ක් නවතින්න
+            await asyncio.sleep(300)
         except Exception as e:
             print(f"Error: {e}")
             await asyncio.sleep(60)
 
-# Vercel serverless function එකට මේක run කරන්න
-def handler(request):
-    bot.run(TOKEN)
-    return {"statusCode": 200}
+bot.run(TOKEN)
